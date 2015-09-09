@@ -1,0 +1,32 @@
+@import "reset";
+@import "syntax";
+@import "../bower_components/jeet/scss/jeet/index";
+
+$grid-color: rgba(#FFBEAF,.3);
+
+body {
+	background: #F2F2F2;
+    border-top: 8px solid #444;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+.site {
+	border: 1px solid $grid-color;
+	@include center();
+}
+
+aside {
+	@include span(1/3);
+	background-color: $grid-color;
+}
+section {
+	@include span(2/3);
+	background-color: $grid-color;
+}
+
+header, footer {
+	@include col(3/3);
+}
