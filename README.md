@@ -2,7 +2,7 @@ gulp-jekyll-bower
 =============================
 
 A starter project including
-* Gulp 
+* Gulp
 * Jekyll
 * SASS
 * BrowserSync
@@ -19,6 +19,6 @@ To use this starter project, you'll need the following things installed on your 
 ## Local Installation
 
 1. Clone this repo, or download it into a directory of your choice.
-2. Inside the directory, ``` $ bundle install ```
-3. Inside the directory, ``` $ npm install ```
-4. Inside the directory, ``` $ gulp ```
+2. Inside the directory ``` $ bundle install ```
+3. Inside the directory ``` $ npm install ```
+4. Inside the directory ``` $ gulp ```
