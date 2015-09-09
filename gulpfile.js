@@ -109,7 +109,7 @@ gulp.task('sass', function () {
         .pipe(sass({
             includePaths: ['scss'],
             onError: browserSync.notify
-        }).on('error', function(){ console.log(sass.logError) }))s
+        }).on('error', function(){ console.log(sass.logError) }))
         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
         .pipe(gulp.dest(distCSS))
         .pipe(browserSync.reload({stream:true}));
