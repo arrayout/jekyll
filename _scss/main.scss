@@ -1,15 +1,12 @@
-/*@import "reset";
-@import "syntax";*/
+@import "custom-variables";
 @import "../bower_components/jeet/scss/jeet/index";
 
 body {
+	background-color: $gray-lighter;
 }
 
 .site {
 	@include center();
-}
-section {
-	@include span(2/3);
 }
 
 header, footer {

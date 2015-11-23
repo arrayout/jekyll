@@ -1,6 +1,6 @@
 {
   "name": "gulp-jekyll-bower",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A starter project including Gulp, Jekyll, Bower",
   "main": "gulpfile.js",
   "scripts": {
