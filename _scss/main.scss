@@ -1,23 +1,15 @@
-@import "reset";
-@import "syntax";
+/*@import "reset";
+@import "syntax";*/
 @import "../bower_components/jeet/scss/jeet/index";
-
-$grid-color: rgba(#FFBEAF,.3);
 
 body {
 }
 
-h1 {
-	font-size: 2em;
-}
-
 .site {
-	border: 1px solid $grid-color;
 	@include center();
 }
 section {
 	@include span(2/3);
-	background-color: $grid-color;
 }
 
 header, footer {
