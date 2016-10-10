@@ -11,38 +11,18 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/main.css">
     <!-- bower:js -->
-    <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <!-- endbower -->
     <!-- main JS -->
-    <script type="text/javascript" src="/js/all.min.js"></script>
+    <script type="text/javascript" src="/js/main.min.js"></script>
 </head>
 
 <body>
-    <div class="site">
-        <header class="header">
-            <h1 class="title"><a href="/">{{ site.name }}</a></h1>
-            <nav><a class="extra" href="/">home</a></nav>
-        </header>
-        <section>
-            <article>{{ content }}</article>
-        </section>
-        <footer class="footer">
-            <div class="contact">
-                <p>
-                    Your Name is<br />
-                    What You Are<br />
-                    you@example.com
-                </p>
-            </div>
-            <div class="contact">
-                <p>
-                    <a href="https://github.com/yourusername">github.com/yourusername</a><br/>
-                    <a href="https://twitter.com/yourusername">twitter.com/yourusername</a><br/>
-                </p>
-            </div>
-        </footer>
-    </div>
+    {{ content }}
+    <footer class="footer">
+        <div class="contact">
+            <small>This website was created using Jekyll and is hosted ad github Pages. Source is available here</small>
+        </div>
+    </footer>
 </body>
-
 </html>

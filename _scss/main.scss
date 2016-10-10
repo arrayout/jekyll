@@ -1,14 +1,79 @@
-@import "custom-variables";
-@import "../bower_components/jeet/scss/jeet/index";
+@import "bourbon";
+@import "neat-helpers";
+@import "modules/_variables.scss";
+@import "modules/_typography.scss";
+@import "neat";
 
 body {
-	background-color: $gray-lighter;
-}
-
-.site {
-	@include center();
-}
-
-header, footer {
-	@include col(3/3);
+	@include outer-container;
+	background-color: #FFF;
+	font-size: $em-base;
+	font-family: Georgia, Times, "Times New Roman", serif;
+	@include pad(null $line-height-s)
+	nav {
+		#back {
+			font-size: modular-scale(4);
+			display: inline-block;
+			position: fixed;
+		}
+	}
+	header {
+		@include span-columns(6);
+		@include shift(3);
+		@include margin($line-height null null null)
+		#personal-image {
+			width: 125px;
+			height: 125px;
+			background-image: url(https://s3-eu-west-1.amazonaws.com/static-arrayout/MF.jpg);
+			background-position: center;
+			@include border-top-radius(50%);
+			@include border-bottom-radius(50%);
+		}
+		@include media($mobile) {
+			@include span-columns(4);
+			@include shift(0);
+		}
+	}
+	section {
+		@include span-columns(6);
+		@include shift(3);
+		@include media($mobile) {
+			@include span-columns(4);
+			@include shift(0);
+		}
+		&#random-quote {
+			@include span-columns(12);
+			@include shift(0);
+			@include margin($line-height null null null);
+			article {
+				@include span-columns(6);
+				@include omega(2n);
+				a {
+					font-size: modular-scale(-1);
+					color: $gray;
+					text-decoration: underline;
+				}
+			}
+			h2 {
+				text-align: center;
+				@include margin(null null 0 null);
+				&+p {
+					text-align: center;
+					@include margin(0 null null null);
+					font-size: modular-scale(-1);
+				}
+			}
+		}
+	}
+	footer {
+		@include margin($line-height-p null $line-height null)
+		@include span-columns(12);
+		font-size: modular-scale(-1);
+		text-align: center;
+		color: $gray;
+		@include media($mobile) {
+			@include span-columns(4);
+			@include shift(0);
+		}	
+	}
 }

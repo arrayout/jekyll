@@ -1,0 +1,17 @@
+---
+layout: project
+title: "Satispay"
+date: 2016-10-09 09:11:03
+categories: project
+---
+
+I have designed many interfaces, wrote tons of CLI commands and called an high number of restful APIs at **Satispay**, an app to share money with friends and pay in store.
+
+I am working with a ton of backend developers supporting marketing team, thanks to newsletter and landing pages tracking data in order to achieve business’ goal.
+
+Daily, I am facing up with scaling challenges. Consequently, I have begun to give the right attention to the system logging and the discovering cache benefits.
+
+I get my hands dirty on different projects at [satispay.com][satispay-www]{:target="_blank"}, [spot.satispay.com][satispay-spot]{:target="_blank"} the merchants dashboard and other internal applications.
+
+[satispay-www]: https://www.satispay.com
+[satispay-spot]: https://spot.satispay.com

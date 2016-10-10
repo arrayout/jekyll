@@ -8,6 +8,8 @@ var concat      = require('gulp-concat');
 var rename      = require('gulp-rename');
 var uglify      = require('gulp-uglify');
 var bower       = require('gulp-bower');
+var bourbon     = require('bourbon').includePaths;
+var neat        = require('bourbon-neat').includePaths;
 var runSequence = require('run-sequence');
 var jshint      = require('gulp-jshint');
 var stylish     = require('jshint-stylish');
@@ -65,8 +67,7 @@ gulp.task('lint', function() {
  */
 gulp.task('jekyll-build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
-        .on('close', done);
+    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'}).on('close', done);
 });
 
 /**
@@ -92,8 +93,8 @@ gulp.task('browser-sync', function() {
 
 gulp.task('js', ['lint'], function () {
     return gulp.src([ srcJavascripts + '/*.js'])
-        .pipe(concat('all.js'))
-        .pipe(rename('all.min.js'))
+        .pipe(concat('main.js'))
+        .pipe(rename('main.min.js'))
         .pipe(uglify()) 
         .pipe(gulp.dest(distJavascripts))
         //.pipe(del([distJavascripts + '/*.js']))
@@ -107,7 +108,7 @@ gulp.task('js', ['lint'], function () {
 gulp.task('sass', function () {
     return gulp.src('_scss/main.scss')
         .pipe(sass({
-            includePaths: ['scss'],
+            includePaths: ['scss'].concat(bourbon, neat),
             onError: browserSync.notify
         }).on('error', function(){ console.log(sass.logError) }))
         .pipe(prefix(['last 15 versions', '> 1%', 'ie 8', 'ie 7'], { cascade: true }))
@@ -121,7 +122,7 @@ gulp.task('sass', function () {
  * Watch html/md files, run jekyll & reload BrowserSync
  */
 gulp.task('watch', function () {
-    gulp.watch('_scss/*.scss', ['sass']);
+    gulp.watch(['_scss/*.scss', '_scss/modules/*.scss'], ['sass']);
     gulp.watch('js/*.js', ['js']);
     gulp.watch(['index.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
