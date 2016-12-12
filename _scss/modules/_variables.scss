@@ -3,7 +3,7 @@ $em-base: 24px;
 $modular-scale-ratio: $minor-third;
 $column: modular-scale(6, 1em, $modular-scale-ratio) !global;
 $gutter: modular-scale(1, 1em, $modular-scale-ratio) !global;
-$visual-grid: false !global;
+$visual-grid: true !global;
 $disable-warnings: true !global;
 
 /*Color schema*/

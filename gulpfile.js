@@ -1,22 +1,23 @@
 var gulp        = require('gulp');
 var del         = require('del');
 var browserSync = require('browser-sync');
+var browserify  = require('browserify');
+var source      = require('vinyl-source-stream');
+var buffer      = require('vinyl-buffer');
 var sass        = require('gulp-sass');
 var prefix      = require('gulp-autoprefixer');
 var cp          = require('child_process');
 var concat      = require('gulp-concat');
 var rename      = require('gulp-rename');
 var uglify      = require('gulp-uglify');
-var bower       = require('gulp-bower');
 var bourbon     = require('bourbon').includePaths;
 var neat        = require('bourbon-neat').includePaths;
 var runSequence = require('run-sequence');
 var jshint      = require('gulp-jshint');
 var stylish     = require('jshint-stylish');
-var wiredep     = require('wiredep').stream;
 
 var dist = './_site';
-var srcJavascripts = './js'; 
+var srcJavascripts = './_js'; 
 var distCSS = './_site/css';
 var distJavascripts = './_site/js';
 var pkg = require('./package.json');
@@ -25,23 +26,26 @@ var messages = {
     jekyllBuild: '<span style="color: gray">Running:</span> $ jekyll build'
 };
 
-/**
- * Install bower
- */
-gulp.task('bower', function() {
-  return bower();
-});
 
-gulp.task('wiredep', function () {
-    return gulp.src('./_layouts/default.html')
-        .pipe(wiredep({
-                directory: './bower_components',
-                bowerJson: require('./bower.json'),
-                ignorePath: '..',
-                //exclude: "www/lib/angular/angular.js"
-            }))
-        .pipe(gulp.dest('./_layouts'));
-});
+gulp.task('browserify', function () {
+  return browserify({
+    entries: ['./_js/main.js'],
+    extensions: ['.js']
+  })
+  .bundle()
+  // Pass desired output filename to vinyl-source-stream
+  .pipe(source('bundle.js'))
+  // Start piping stream to tasks!
+  .pipe(buffer())
+  .pipe(uglify({
+    mangle: false,
+    output: {
+      beautify: false
+    }
+  }))
+  // .pipe(gulp.dest('./.tmp/'))
+  .pipe(gulp.dest(distJavascripts))
+})
 
 /**
  * Delete CSS JS files
@@ -75,7 +79,7 @@ gulp.task('jekyll-build', function (done) {
  */
 gulp.task('jekyll-rebuild', function (callback) {
     runSequence('jekyll-build',
-        ['sass', 'js'],
+        ['sass', 'browserify'],
         callback);
     browserSync.reload();
 });
@@ -91,16 +95,16 @@ gulp.task('browser-sync', function() {
     });
 });
 
-gulp.task('js', ['lint'], function () {
-    return gulp.src([ srcJavascripts + '/*.js'])
-        .pipe(concat('main.js'))
-        .pipe(rename('main.min.js'))
-        .pipe(uglify()) 
-        .pipe(gulp.dest(distJavascripts))
-        //.pipe(del([distJavascripts + '/*.js']))
-        .pipe(browserSync.reload({stream:true }));
-        //.pipe(notify({ message: 'Script task complete' }));
-});
+// gulp.task('js', ['lint'], function () {
+//     return gulp.src([ srcJavascripts + '/*.js'])
+//         .pipe(concat('main.js'))
+//         .pipe(rename('main.min.js'))
+//         .pipe(uglify()) 
+//         .pipe(gulp.dest(distJavascripts))
+//         //.pipe(del([distJavascripts + '/*.js']))
+//         .pipe(browserSync.reload({stream:true }));
+//         //.pipe(notify({ message: 'Script task complete' }));
+// });
 
 /**
  * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
@@ -123,7 +127,7 @@ gulp.task('sass', function () {
  */
 gulp.task('watch', function () {
     gulp.watch(['_scss/*.scss', '_scss/modules/*.scss'], ['sass']);
-    gulp.watch('js/*.js', ['js']);
+    gulp.watch('_js/*.js', ['browserify']);
     gulp.watch(['index.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
 });
 
@@ -134,10 +138,8 @@ gulp.task('watch', function () {
 
 gulp.task('default', function(callback) {
     runSequence('delete',
-        'bower',
-        'wiredep',
         'jekyll-build',
-        ['sass', 'js'],
+        ['sass', 'browserify'],
         'browser-sync',
         'watch',
         callback);
@@ -147,9 +149,7 @@ gulp.task('default', function(callback) {
  * Build app from scratch: compile jekyll, sass and JS
  */
 gulp.task('build', function(callback) {
-    runSequence('bower',
-        'wiredep',
-        'jekyll-build',
-        ['sass', 'js'],
+    runSequence('jekyll-build',
+        ['sass', 'browserify'],
         callback);
 });

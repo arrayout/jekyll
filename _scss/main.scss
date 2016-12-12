@@ -21,14 +21,6 @@ body {
 		@include span-columns(6);
 		@include shift(3);
 		@include margin($line-height null null null)
-		#personal-image {
-			width: 125px;
-			height: 125px;
-			background-image: url(https://s3-eu-west-1.amazonaws.com/static-arrayout/MF.jpg);
-			background-position: center;
-			@include border-top-radius(50%);
-			@include border-bottom-radius(50%);
-		}
 		@include media($mobile) {
 			@include span-columns(4);
 			@include shift(0);
@@ -40,29 +32,6 @@ body {
 		@include media($mobile) {
 			@include span-columns(4);
 			@include shift(0);
-		}
-		&#random-quote {
-			@include span-columns(12);
-			@include shift(0);
-			@include margin($line-height null null null);
-			article {
-				@include span-columns(6);
-				@include omega(2n);
-				a {
-					font-size: modular-scale(-1);
-					color: $gray;
-					text-decoration: underline;
-				}
-			}
-			h2 {
-				text-align: center;
-				@include margin(null null 0 null);
-				&+p {
-					text-align: center;
-					@include margin(0 null null null);
-					font-size: modular-scale(-1);
-				}
-			}
 		}
 	}
 	footer {
