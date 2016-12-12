@@ -1,13 +1,12 @@
-gulp-jekyll-bower
+gulp-jekyll, a starter project
 =============================
 
 A starter project including
 - Gulp
 - Jekyll
-- SASS
-- BrowserSync
-- Bower
-- Jeet
+- Browserify
+- Bourbon
+- Neat
 
 ## System Preparation
 
