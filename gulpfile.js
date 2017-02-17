@@ -45,6 +45,7 @@ gulp.task('browserify', function () {
   }))
   // .pipe(gulp.dest('./.tmp/'))
   .pipe(gulp.dest(distJavascripts))
+  .pipe(browserSync.reload({stream:true}));
 })
 
 /**
