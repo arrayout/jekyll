@@ -1,0 +1,5 @@
+name: gulp jekyll
+markdown: kramdown
+highlighter: pygments # or rouge or null
+exclude: ["node_modules", "gulpfile.js", "package.json", "js"]
+permalink: none

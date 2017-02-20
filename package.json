@@ -1,0 +1,46 @@
+{
+  "name": "matteofabbri",
+  "version": "1.0.0",
+  "description": "A project including Gulp, Jekyll, Bower, Bouboun and Neat",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matteo Fabbri",
+  "license": "ISC",
+  "devDependencies": {
+    "bourbon": "^4.2.7",
+    "bourbon-neat": "^1.8.0",
+    "browser-sync": "~2.17.1",
+    "browserify": "^13.0.0",
+    "del": "~2.0.0",
+    "gulp": "~3.9.0",
+    "gulp-autoprefixer": "1.0.0",
+    "gulp-bower": "0.0.10",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^1.11.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^1.4.0",
+    "jshint-stylish": "^2.0.1",
+    "run-sequence": "^1.1.2",
+    "wiredep": "^2.2.2",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "jekyll",
+    "gulp",
+    "sass",
+    "bower"
+  ],
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "dependencies": {}
+}

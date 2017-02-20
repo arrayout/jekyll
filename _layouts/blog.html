@@ -1,0 +1,11 @@
+---
+layout: default
+---
+<nav><a href="/" id="back">&#60;</a></nav>
+<section>
+	<h2>{{ page.title }}</h2>
+	<small class="meta">Last updated: {{ page.date | date_to_string }}</small>
+	<article>
+		{{ content }}	
+	</article>
+</section>
