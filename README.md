@@ -7,6 +7,8 @@ A starter project including
 - Browserify
 - Bourbon
 - Neat
+- Babel
+- Flow
 
 ## System Preparation
 
