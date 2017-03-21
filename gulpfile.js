@@ -13,11 +13,9 @@ var uglify      = require('gulp-uglify');
 var bourbon     = require('bourbon').includePaths;
 var neat        = require('bourbon-neat').includePaths;
 var runSequence = require('run-sequence');
-var jshint      = require('gulp-jshint');
-var stylish     = require('jshint-stylish');
 
 var dist = './_site';
-var srcJavascripts = './_js'; 
+var srcJavascripts = './_js';
 var distCSS = './_site/css';
 var distJavascripts = './_site/js';
 var pkg = require('./package.json');
@@ -31,6 +29,9 @@ gulp.task('browserify', function () {
   return browserify({
     entries: ['./_js/main.js'],
     extensions: ['.js']
+  })
+  .transform('babelify', {
+    presets: ['es2015']
   })
   .bundle()
   // Pass desired output filename to vinyl-source-stream
@@ -55,16 +56,6 @@ gulp.task('delete', function() {
     del([ dist + '/js', dist + '/css']).then(function(){
         console.log(del.sync);
     });
-});
-
-/**
- * Check JS files
- */
-gulp.task('lint', function() {
-    return gulp.src(srcJavascripts + '/*.js')
-        .pipe(jshint())
-        .pipe(jshint.reporter('jshint-stylish'))
-        .pipe(jshint.reporter('fail'));
 });
 
 /**
@@ -100,7 +91,7 @@ gulp.task('browser-sync', function() {
 //     return gulp.src([ srcJavascripts + '/*.js'])
 //         .pipe(concat('main.js'))
 //         .pipe(rename('main.min.js'))
-//         .pipe(uglify()) 
+//         .pipe(uglify())
 //         .pipe(gulp.dest(distJavascripts))
 //         //.pipe(del([distJavascripts + '/*.js']))
 //         .pipe(browserSync.reload({stream:true }));
