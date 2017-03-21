@@ -1,7 +1,7 @@
 {
   "name": "matteofabbri",
   "version": "1.0.0",
-  "description": "A project including Gulp, Jekyll, Bower, Bouboun and Neat",
+  "description": "A project including Gulp, Jekyll, Bouboun and Neat",
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -43,8 +43,7 @@
   "keywords": [
     "jekyll",
     "gulp",
-    "sass",
-    "bower"
+    "sass"
   ],
   "bugs": {
     "url": ""
