@@ -17,10 +17,6 @@ $warning-color: #FFE295;
 $error-color: #EC5443;
 $success-color: $brand-primary;
 
-@include selection {
-  background-color: $brand-primary-lighter;
-}
-
 /*Vertical rhythm*/
 $line-height: 1.444em;
 $line-height-s: $line-height/2;
